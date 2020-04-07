@@ -28,16 +28,9 @@ function loadNames(e) {
      }
      
      // Ajax Call
-     const xhr = new XMLHttpRequest();
-
-     // Open the connection
-     xhr.open('GET', url, true );
-
-     // Execute the function
-     xhr.onload = function() {
-          if(this.status === 200) {
-               const names = JSON.parse( this.responseText );
-               
+     fetch(url)
+          .then((response) => response.json())
+          .then((names)=> {
                // Insert into the HTML
 
                let html = '<h2>Generated Names</h2>';
@@ -50,9 +43,9 @@ function loadNames(e) {
                html += '</ul>';
 
                document.querySelector('#result').innerHTML = html;
-          }
-     }
+          })
+          .catch((error) => {
+               console.log(error);
+          })
 
-     // Send the request
-     xhr.send();
-}
+     }
