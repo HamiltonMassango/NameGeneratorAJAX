@@ -21,9 +21,7 @@ function loadNames(e) {
      if(amount !== ''){
           url += `amount=${amount}&`;
      } 
-     // Ajax Call
-     fetch(url)
-          .then((response) => response.json())
+     getNames()
           .then((names)=> {
                // Insert into the HTML
 
@@ -39,4 +37,13 @@ function loadNames(e) {
                document.querySelector('#result').innerHTML = html;
           })
           .catch((error) => console.log(error))
+}
+
+function getNames (url){
+      // Ajax Call
+      let response = fetch(url);
+      let names = response.json();
+      return {
+           names,
+      }
 }
