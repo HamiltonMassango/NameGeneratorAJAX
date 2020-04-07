@@ -1,12 +1,7 @@
 document.querySelector('#generate-names').addEventListener('submit', loadNames);
-
-
-
 // Execute the function to query the API
 function loadNames(e) {
      e.preventDefault();
-
-
      // Read the values from the form and create the variables
      const origin = document.getElementById('country').value;
      const genre = document.getElementById('genre').value;
@@ -25,8 +20,7 @@ function loadNames(e) {
       // Read the amount and append to the url
      if(amount !== ''){
           url += `amount=${amount}&`;
-     }
-     
+     } 
      // Ajax Call
      fetch(url)
           .then((response) => response.json())
@@ -44,8 +38,5 @@ function loadNames(e) {
 
                document.querySelector('#result').innerHTML = html;
           })
-          .catch((error) => {
-               console.log(error);
-          })
-
-     }
+          .catch((error) => console.log(error))
+}
